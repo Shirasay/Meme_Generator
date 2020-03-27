@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from 'react';
-import Meme from './meme_select';
 import Meme_Create from './meme_create';
 import './style/meme_base.scss';
 import styled from 'styled-components'
@@ -7,7 +6,6 @@ import styled from 'styled-components'
 const MemeBase=()=>{
     const[main_meme, setMain_meme] = useState(['']);
     const[selected_meme, setSelected_meme] = useState('')
-    const[search, setSearch] = useState('')
     
     const sortMeme=(data)=>{
       data.sort(function (a, b) {
@@ -29,10 +27,9 @@ const MemeBase=()=>{
    
     const images = document.getElementsByTagName('a')
     const searchMeme=(value)=>{
-      setSearch(value)
       
       for(const el of images){
-        if(el.dataset.tag.toLowerCase().indexOf(search.toLowerCase()) === -1){
+        if(el.dataset.tag.toLowerCase().indexOf(value.toLowerCase()) === -1){
           el.classList.add("invisible");
         }else{
           el.classList.remove("invisible"); 
@@ -48,15 +45,17 @@ const MemeBase=()=>{
             sortMeme(data.data.memes);
           })
       }, []);
-      
+
       return <> 
-        <input onChange={e => searchMeme(e.target.value)} type='text' value={search}/><br/>
+        <input onChange={e => searchMeme(e.target.value)} type='text'/><br/>
         {selected_meme && <Meme_Create selected_meme={selected_meme}/>}
-        
+
         <Grid>
-        {!selected_meme && main_meme.map(selected_meme=>{ 
-          return <Meme selected_meme={selected_meme} onClick={()=>{setSelected_meme(selected_meme)}}/>}
-        )}
+        {!selected_meme && main_meme.map((mem,i)=>{          
+          return (<a id='mainPage' key={i} data-tag={mem.name}>
+            <img src={mem.url} style={{width: '300px'}} alt={mem.name} onClick={()=>{setSelected_meme(mem)}}/>
+          </a>)
+})}
         </Grid>
          </>
       

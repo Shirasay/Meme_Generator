@@ -11,7 +11,7 @@ const Meme_Create =({selected_meme, onClick})=>{
     
     const style={
       position: "absolute",
-      width: "80%",
+      width: "100%",
       textAlign: "center",
       margin: "0",
       padding: "0",
@@ -55,7 +55,7 @@ const Meme_Create =({selected_meme, onClick})=>{
                 console.error('oops, something went wrong!', error);
             });
         }
-
+        
     return (<>
         <button onClick={()=>window.location.reload(false)}>Return</button>
         <div id='selected_meme'  style={{position: 'relative', maxWidth: '200px'}}>
