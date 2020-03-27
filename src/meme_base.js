@@ -28,8 +28,8 @@ const MemeBase=()=>{
     `;
    
     const images = document.getElementsByTagName('a')
-    const searchMeme=(e)=>{
-      setSearch(e)
+    const searchMeme=(value)=>{
+      setSearch(value)
       
       for(const el of images){
         if(el.dataset.tag.toLowerCase().indexOf(search.toLowerCase()) === -1){
@@ -37,6 +37,7 @@ const MemeBase=()=>{
         }else{
           el.classList.remove("invisible"); 
         }
+        console.log(el);
       }
     }
     
@@ -44,7 +45,7 @@ const MemeBase=()=>{
         fetch('https://api.imgflip.com/get_memes')
           .then(response => response.json())
           .then(data => {
-            sortMeme(data.data.memes)
+            sortMeme(data.data.memes);
           })
       }, []);
       
