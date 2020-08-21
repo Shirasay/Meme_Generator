@@ -1,13 +1,11 @@
-import React, {Component} from "react";
-import ReactDOM from "react-dom";
-import MemeBase from './meme_base';
+import React from "react"
+import ReactDOM from "react-dom"
+import MemeBase from './meme_base'
 import {
     HashRouter,
     Route,
-    Link,
     Switch,
-    NavLink,
-  } from 'react-router-dom';
+  } from 'react-router-dom'
 
 const Meme = () =>{
     return <HashRouter>
@@ -19,4 +17,4 @@ const Meme = () =>{
   </HashRouter>
 }
 
-ReactDOM.render(<Meme/>, document.getElementById("app"));
+ReactDOM.render(<Meme/>, document.getElementById("app"))

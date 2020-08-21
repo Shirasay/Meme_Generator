@@ -1,16 +1,16 @@
-import React,{useState,useEffect} from 'react';
-import Meme_Create from './meme_create';
-import './style/meme_base.scss';
+import React,{useState,useEffect} from 'react'
+import Meme_Create from './meme_create'
+import './style/meme_base.scss'
 import styled from 'styled-components'
 
 const MemeBase=()=>{
-    const[main_meme, setMain_meme] = useState(['']);
+    const[main_meme, setMain_meme] = useState([''])
     const[selected_meme, setSelected_meme] = useState('')
     
     const sortMeme=(data)=>{
       data.sort(function (a, b) {
-        return a.height - b.height;
-      });
+        return a.height - b.height
+      })
       setMain_meme(data)
     }
 
@@ -30,11 +30,11 @@ const MemeBase=()=>{
       
       for(const el of images){
         if(el.dataset.tag.toLowerCase().indexOf(value.toLowerCase()) === -1){
-          el.classList.add("invisible");
+          el.classList.add("invisible")
         }else{
-          el.classList.remove("invisible"); 
+          el.classList.remove("invisible") 
         }
-        console.log(el);
+        console.log(el)
       }
     }
     
@@ -42,9 +42,9 @@ const MemeBase=()=>{
         fetch('https://api.imgflip.com/get_memes')
           .then(response => response.json())
           .then(data => {
-            sortMeme(data.data.memes);
+            sortMeme(data.data.memes)
           })
-      }, []);
+      }, [])
 
       return <> 
         <input onChange={e => searchMeme(e.target.value)} type='text'/><br/>
